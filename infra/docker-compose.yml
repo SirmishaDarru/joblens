@@ -1,0 +1,30 @@
+services:
+  mysql:
+    image: mysql:8.4
+    container_name: joblens-mysql
+    environment:
+      MYSQL_DATABASE: joblens
+      MYSQL_USER: joblens
+      MYSQL_PASSWORD: joblens
+      MYSQL_ROOT_PASSWORD: root
+    ports:
+      - "3306:3306"
+    volumes:
+      - joblens_mysql:/var/lib/mysql
+    healthcheck:
+      test: ["CMD", "mysqladmin", "ping", "-h", "localhost"]
+      interval: 10s
+      timeout: 5s
+      retries: 10
+
+  mongodb:
+    image: mongo:8
+    container_name: joblens-mongodb
+    ports:
+      - "27017:27017"
+    volumes:
+      - joblens_mongo:/data/db
+
+volumes:
+  joblens_mysql:
+  joblens_mongo:

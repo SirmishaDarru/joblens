@@ -1,0 +1,1 @@
+-- Reserved for future Flyway migrations. JPA creates the development schema initially.
